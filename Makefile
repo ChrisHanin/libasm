@@ -6,7 +6,7 @@
 #    By: chanin <chanin@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/10 14:02:31 by chanin            #+#    #+#              #
-#    Updated: 2026/05/08 16:38:13 by chanin           ###   ########.fr        #
+#    Updated: 2026/05/09 13:46:29 by chanin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC = 	suma.s \
 		ft_atoi_base.s \
 		ft_list_push_front.s \
 		ft_list_size.s \
-		ft_list_sort.s 
+		ft_list_sort.s \
+		ft_list_remove_if.s 
 		
 #SRC_B =
 

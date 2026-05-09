@@ -6,7 +6,7 @@
 /*   By: chanin <chanin@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:02:31 by chanin            #+#    #+#             */
-/*   Updated: 2026/05/08 16:37:57 by chanin           ###   ########.fr       */
+/*   Updated: 2026/05/09 13:46:12 by chanin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int		ft_atoi_base(char *str, char *base);
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
+void	ft_list_remove_if(t_list **begin_list, void *data_ref,
+						int (*cmp)(), void (*free_fct)(void *));
 
 #endif

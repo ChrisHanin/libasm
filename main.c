@@ -92,6 +92,7 @@ void free_list(t_list **a)
     while (tmp)
     {
         tmp2 = tmp->next;
+		free(tmp->data);
         free(tmp);
         tmp = tmp2;
     }
@@ -103,9 +104,9 @@ void test_list(void)
 {
     t_list *list = NULL;
     t_list **list_ptr = &list;
-    char *str = "tophe";
-    char *str2 = "chris";
-    char *str3 = "hola";
+    char *str = ft_strdup("tophe");
+    char *str2 = ft_strdup("chris");
+    char *str3 = ft_strdup("hola");
 
     printf("***TEST FT_LIST***\n");
     
@@ -125,17 +126,24 @@ void test_list(void)
 	ft_list_sort(list_ptr, ft_strcmp);
     print_list(list_ptr);
 
+	char *data_ref = "hola";
+
+	ft_list_remove_if(list_ptr, data_ref, ft_strcmp, free);
+    print_list(list_ptr);
+
 
     free_list(list_ptr);
+    print_list(list_ptr);
+
 }
 
 
 
 int main()
 {
-	//test_str();
-	//test_str_2();
-	//test_atoi_base();
+	test_str();
+	test_str_2();
+	test_atoi_base();
 	test_list();
 
 	return (0);
