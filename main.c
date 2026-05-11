@@ -5,6 +5,8 @@ void test_str(void)
 	//printf("%d\n", suma(3, 2, 1));
 	printf("***TEST FT_STRLEN***\n");
 	printf("%zu\n", ft_strlen("hola"));
+	printf("%zu\n", ft_strlen("holayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"));
+	printf("%zu\n", ft_strlen(""));
 	printf("%zu\n", ft_strlen(NULL));
 
 	printf("***TEST FT_STRCPY***\n");
@@ -13,7 +15,7 @@ void test_str(void)
 	printf("%s\n", ft_strcpy(dest, src));
 	printf("%s %s\n", dest, src);
 
-	char src3[4] = "abc";
+	char src3[1] = "";
 	char dest3[40] = "ddddddddd";
 	printf("%s\n", ft_strcpy(dest3, src3));
 	printf("%s %s\n", dest3, src3);
@@ -21,27 +23,54 @@ void test_str(void)
 	//printf("%d\n", suma(3, 2, 1));
 	printf("***TEST FT_STRCMP***\n");
 	printf("%d\n", ft_strcmp("holc", "hold"));
-	printf("%d\n", ft_strcmp("hold", "hold"));
-	printf("%d\n", ft_strcmp("hold", "holc"));
+	printf("%d\n", ft_strcmp("", ""));
+	printf("%d\n", ft_strcmp("", "hold"));
+	printf("%d\n", ft_strcmp("hold", ""));
 	printf("%d\n", ft_strcmp("hold", "holda"));
 }
 
 void test_str_2(void)
 {
+	int fd = open("test.txt", O_RDWR);
 	printf("***TEST FT_WRITE***\n");
 	printf("%zd\n", ft_write(1, "hola\n", 5));
+	printf("%d\n", errno);
+	printf("%s\n", strerror(errno));
+
+	printf("%zd\n", ft_write(fd, "hola\n", 5));
+	printf("%zd\n", ft_write(2, "hola\n", 5));
+
+	printf("%zd\n", ft_write(-2, "hola\n", 5));
+	printf("%d\n", errno);
+	printf("%s\n", strerror(errno));
+
 	printf("%zd\n", ft_write(1, NULL, 4));
+	printf("%d\n", errno);
+	printf("%s\n", strerror(errno));
+
+	close(fd);
 
 	printf("***TEST FT_READ***\n");
 	char buff[400];
-	int fd = open("Makefile", O_RDONLY);
-	printf("%zd\n", ft_read(fd, buff, 400));
+	bzero(buff, 400);
+	int fd2 = open("Makefile", O_RDONLY);
+	printf("%zd\n", ft_read(fd2, buff, 399));
+	buff[399] = '\0';
 	printf("%s\n", buff);
+	close(fd2);
+	printf("%zd\n", ft_read(0, buff, 400));
+	printf("%zd\n", ft_read(-12, buff, 400));
+	printf("%d\n", errno);
+	printf("%s\n", strerror(errno));
+
 
 	printf("***TEST FT_STRDUP***\n");
 	char *dup = ft_strdup("hola");
 	printf("%s\n", dup);
 	free(dup);
+	char *dup2 = ft_strdup("");
+	printf("%s\n", dup2);
+	free(dup2);
 	printf("%s\n", (char *)NULL);
 
 }
@@ -145,6 +174,10 @@ int main()
 	test_str_2();
 	test_atoi_base();
 	test_list();
+
+	/*ft_write(-1, NULL, 6);
+	printf("%d\n", errno);
+	printf("%s\n", strerror(errno));*/
 
 	return (0);
 }
